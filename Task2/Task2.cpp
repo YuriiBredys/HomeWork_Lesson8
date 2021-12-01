@@ -6,10 +6,29 @@
 #include <algorithm>
 using namespace std;
 
+vector<vector<int>> transpose(vector<vector<int>> matrix)
+{
+    vector<vector<int>> transposed;
+    for (int i = 0; i < matrix[0].size(); i++)
+    {
+        transposed.push_back(vector<int>(matrix.size()));
+    }
+
+    for (int i = 0; i < matrix.size(); i++)
+    {
+        for (int j = 0; j < matrix[i].size(); j++)
+        {
+            transposed[j][i] = matrix[i][j];
+        }
+    }
+
+    return transposed;
+}
+
 int main()
 {
-    string pathIn = "C:\\Users\\User\\source\\repos\\HomeWork_Lesson8\\Task2\\Matrix.txt";
-    string pathOut = "C:\\Users\\User\\source\\repos\\HomeWork_Lesson8\\Task2\\MatrixOut.txt";
+    string pathIn = "../HomeWork_Lesson8/Task2/Matrix.txt";
+    string pathOut = "../HomeWork_Lesson8/Task2/MatrixOut.txt";
     string input;
     vector<vector<int>> matrix;
     fstream objectIn, objectOut;
@@ -18,7 +37,7 @@ int main()
 
     if (!objectIn.is_open())
     {
-        cout << "Error" << endl;
+        cout << "Error in" << endl;
     }
     else
     {
@@ -38,18 +57,20 @@ int main()
 
     objectIn.close();
 
-    sort(matrix.begin(), matrix.end(),
-        [](const vector<int>& a, const vector<int>& b)
-        {
-            return a[1] < b[1];
-        });
+    auto transposed = transpose(matrix);
+
+    for (auto& row : transposed)
+    {
+        sort(row.begin(), row.end());
+    }
     
-    
+    matrix = transpose(transposed);
+
     objectOut.open(pathOut, fstream::out);
 
     if (!objectOut.is_open())
     {
-        cout << "Error" << endl;
+        cout << "Error out" << endl;
     }
     else
     {

@@ -8,8 +8,8 @@ using namespace std;
 
 int main()
 {
-    string pathIn = "C:\\Users\\User\\source\\repos\\HomeWork_Lesson8\\Task1\\Matrix.txt";
-    string pathOut = "C:\\Users\\User\\source\\repos\\HomeWork_Lesson8\\Task1\\MatrixOut.txt";
+    string pathIn = "../HomeWork_Lesson8/Task1/Matrix.txt";
+    string pathOut = "../HomeWork_Lesson8/Task1/MatrixOut.txt";
     string input;
     vector<vector<int>> matrix;
     fstream objectIn, objectOut;
@@ -18,7 +18,7 @@ int main()
 
     if (!objectIn.is_open())
     {
-        cout << "Error" << endl;
+        cout << "Error in" << endl;
     }
     else
     {
@@ -47,7 +47,7 @@ int main()
 
     if(!objectOut.is_open())
     {
-        cout << "Error" << endl;
+        cout << "Error out" << endl;
     }
     else
     {
